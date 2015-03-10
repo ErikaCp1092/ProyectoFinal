@@ -1,26 +1,24 @@
 package com.example.erika.proyectofinal;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class Principal extends ActionBarActivity {
+public class cuenta extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_cuenta);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        getMenuInflater().inflate(R.menu.menu_cuenta, menu);
         return true;
     }
 
@@ -37,18 +35,5 @@ public class Principal extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void lanzarInfo(View view){
-        Intent i = new Intent(this, Info.class);
-        startActivity(i);
-    }
-    public void lanzarEjercicio(View view){
-        Intent i = new Intent(this, ejercicios.class);
-        startActivity(i);
-    }
-    public void lanzarCuenta(View view){
-        Intent i = new Intent(this, cuenta.class);
-        startActivity(i);
     }
 }
