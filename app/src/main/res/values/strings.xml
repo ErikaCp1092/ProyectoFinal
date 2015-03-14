@@ -7,5 +7,6 @@
     <string name="title_activity_info">Info</string>
     <string name="title_activity_ejercicios">ejercicios</string>
     <string name="title_activity_cuenta">cuenta</string>
+    <string name="title_activity_mapa">Map</string>
 
 </resources>
