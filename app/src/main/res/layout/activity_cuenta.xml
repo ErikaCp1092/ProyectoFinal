@@ -99,10 +99,12 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/txtMail"
             android:layout_weight="3" />
+
+         />
     </TableRow>
 
     <TableRow
