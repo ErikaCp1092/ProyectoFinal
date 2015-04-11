@@ -1,7 +1,7 @@
 package com.example.erika.proyectofinal;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
 
 
 public class cuenta extends ActionBarActivity {
@@ -25,7 +25,7 @@ public class cuenta extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_cuenta);
 
         idView = (TextView) findViewById(R.id.idView);
         lblNombre = (TextView) findViewById(R.id.lblNombre);
@@ -106,9 +106,14 @@ public class cuenta extends ActionBarActivity {
             txtNombre.setText("");
             checkAceptado.setChecked(false);
             txtEdad.setText("0");
-            txtTemp.setText("0.0");
+            txtTemp.setText("");
         }
         else
             Toast.makeText(this, "No se encontró el elemento.", Toast.LENGTH_SHORT).show();
     }
+    public void lanzarPrincipal(View view){
+        Intent i = new Intent(this,Principal.class);
+        startActivity(i);
+    }
+
 }

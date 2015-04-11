@@ -67,7 +67,7 @@
                 android:layout_marginRight="50dp"
                 android:onClick="lanzarCuenta"
                 android:clickable="true"
-                />
+                android:src="@android:drawable/ic_menu_myplaces" />
 
         </TableRow>
 
