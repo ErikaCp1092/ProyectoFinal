@@ -1,33 +1,42 @@
 package com.example.erika.proyectofinal;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 
 public class cuenta extends ActionBarActivity {
-    TextView lblNombre, lblEdad, lblMail, idView;
-    EditText txtNombre, txtEdad, txtMail;
 
+    TextView lblNombre, lblSuscrito, lblEdad, lblTemp, idView;
+    EditText txtNombre, txtEdad, txtTemp;
+    CheckBox checkAceptado;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cuenta);
+        setContentView(R.layout.activity_principal);
 
         idView = (TextView) findViewById(R.id.idView);
         lblNombre = (TextView) findViewById(R.id.lblNombre);
+        lblSuscrito = (TextView) findViewById(R.id.lblSuscrito);
         lblEdad = (TextView) findViewById(R.id.lblEdad);
-        lblMail = (TextView) findViewById(R.id.lblMail);
+        lblTemp = (TextView) findViewById(R.id.lblEdo);
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtEdad = (EditText) findViewById(R.id.txtEdad);
-        txtMail = (EditText) findViewById(R.id.txtMail);
+        txtTemp = (EditText) findViewById(R.id.txtTemp);
+        checkAceptado = (CheckBox) findViewById(R.id.checkAceptado);
+
 
     }
 
@@ -35,7 +44,7 @@ public class cuenta extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cuenta, menu);
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
         return true;
     }
 
@@ -54,14 +63,18 @@ public class cuenta extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void newProduct (View view){
+    public void newProduct (View view) {
+        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 
-        MyDBHandler dbHandler = new MyDBHandler(this,null,null,1);
-        Product product = new Product(txtNombre.getText().toString(), Integer.parseInt(txtEdad.getText().toString()),txtMail.getText().toString());
+        Product product =
+                new Product(txtNombre.getText().toString(), checkAceptado.isChecked() ? "1" : "0",
+                        Integer.parseInt(txtEdad.getText().toString()), Float.parseFloat(txtTemp.getText().toString()));
+
         dbHandler.addProduct(product);
         lookupProduct(view);
         Toast.makeText(this, "Registro añadido.", Toast.LENGTH_SHORT).show();
     }
+
     public void lookupProduct (View view) {
         MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 
@@ -71,12 +84,14 @@ public class cuenta extends ActionBarActivity {
         if (product != null) {
             idView.setText(String.valueOf(product.getID()));
             txtNombre.setText(product.getNombre());
+            checkAceptado.setChecked(product.getActivo().equals("1"));
             txtEdad.setText(String.valueOf(product.getEdad()));
-            txtMail.setText(product.getMail());
+            txtTemp.setText(String.valueOf(product.getTemp()));
         } else {
             Toast.makeText(this, "No se encontró el elemento.", Toast.LENGTH_SHORT).show();
         }
     }
+
     public void removeProduct (View view) {
         MyDBHandler dbHandler = new MyDBHandler(this, null,
                 null, 1);
@@ -89,11 +104,11 @@ public class cuenta extends ActionBarActivity {
             Toast.makeText(this, "Registro borrado.", Toast.LENGTH_SHORT).show();
             idView.setText("");
             txtNombre.setText("");
+            checkAceptado.setChecked(false);
             txtEdad.setText("0");
-            txtMail.setText("");
+            txtTemp.setText("0.0");
         }
         else
             Toast.makeText(this, "No se encontró el elemento.", Toast.LENGTH_SHORT).show();
     }
 }
-

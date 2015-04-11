@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Jared on 08/04/2015.
+ * Created by Carlos on 22/03/2015.
  */
 public class MyDBHandler extends SQLiteOpenHelper {
 
@@ -46,8 +46,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOMBRE, product.getNombre());
+        values.put(COLUMN_ACTIVO, product.getActivo());
         values.put(COLUMN_EDAD, product.getEdad());
-        values.put(COLUMN_TEMP, product.getMail());
+        values.put(COLUMN_TEMP, product.getTemp());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -68,8 +69,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
             product.setID(Integer.parseInt(cursor.getString(0)));
             product.setNombre(cursor.getString(1));
-            product.setEdad(Integer.parseInt(cursor.getString(2)));
-            product.setMail(cursor.getString(3));
+            product.setActivo(cursor.getString(2));
+            product.setEdad(Integer.parseInt(cursor.getString(3)));
+            product.setTemp(Float.parseFloat(cursor.getString(4)));
             cursor.close();
         } else {
             product = null;
@@ -101,4 +103,3 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return result;
     }
 }
-

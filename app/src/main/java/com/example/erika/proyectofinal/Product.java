@@ -1,31 +1,29 @@
 package com.example.erika.proyectofinal;
-
-/**
- * Created by Jared on 08/04/2015.
- */
 public class Product {
 
     private int _id;
     private String _nombre;
     private int _edad;
-    private String _mail;
+    private String _activo;
+    private float _temp;
 
     public Product() {
 
     }
 
-    public Product(int id, String nombre, int edad, String mail) {
+    public Product(int id, String nombre, String activo, int edad, float temp) {
         this._id = id;
         this._nombre = nombre;
         this._edad = edad;
-        this._mail = mail;
+        this._activo = activo;
+        this._temp = temp;
     }
 
-    public Product(String nombre, int edad, String mail) {
+    public Product(String nombre, String activo, int edad, float temp) {
         this._nombre = nombre;
         this._edad = edad;
-
-        this._mail = mail;
+        this._activo = activo;
+        this._temp = temp;
     }
 
     public void setID(int id) {
@@ -52,12 +50,21 @@ public class Product {
         this._edad = _edad;
     }
 
-
-    public String getMail() {
-        return _mail;
+    public String getActivo() {
+        return _activo;
     }
 
-    public void setMail(String _mail) {
-        this._mail= _mail;
+    public void setActivo(String _activo) {
+        this._activo = _activo;
+    }
+
+    public float getTemp() {
+        return _temp;
+    }
+
+    public void setTemp(float _temp) {
+        this._temp = _temp;
     }
 }
+
+
