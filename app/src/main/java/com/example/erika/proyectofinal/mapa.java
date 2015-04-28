@@ -3,20 +3,36 @@ package com.example.erika.proyectofinal;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class mapa extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private Marker Itch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
         setUpMapIfNeeded();
+
+        if (mMap != null){
+            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+            CameraUpdate cambiar = CameraUpdateFactory.newLatLng(new LatLng(28.70942501,-106.10500127));
+            mMap.moveCamera(cambiar);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28.70942501,-106.10500127),18));
+            UiSettings conf = mMap.getUiSettings();
+            conf.setZoomControlsEnabled(true);
+            conf.setCompassEnabled(true);
+            conf.setZoomGesturesEnabled(true);
+        }
     }
 
     @Override
@@ -60,6 +76,10 @@ public class mapa extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(28.699641,-106.098125 )).title("ITCH"));
+       Itch =  mMap.addMarker(new MarkerOptions().position(new LatLng(28.70942501, -106.10500127)));
+       Itch.setTitle("ItchII");
+       Itch.setDraggable(false);
+
+
     }
 }
