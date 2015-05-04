@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 
 public class Principal extends ActionBarActivity {
@@ -51,10 +50,5 @@ public class Principal extends ActionBarActivity {
     public void lanzarCuenta(View view){
         Intent i = new Intent(this, cuenta.class);
         startActivity(i);
-    }
-
-    public void Bienvenido(){
-        Toast.makeText(this, "Bienvenido, si no estas registrado ve a cuenta",Toast.LENGTH_SHORT).show();
-
     }
 }
